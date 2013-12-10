@@ -122,7 +122,8 @@ function efClRender( $input, $attribs ) {
     }
     $tag_list_without_duplicates = array_unique($tag_list_without_cl); // Just in case there are duplicates.
     $tags_to_match = implode("|", $tag_list_without_duplicates);
-       
+
+	$list_stack = array();
     foreach($cl_lines as $cl_line) {
 
         // Skip blank lines.
@@ -154,7 +155,9 @@ function efClRender( $input, $attribs ) {
         // closed by a corresponding closing tag.
         if($name_of_the_first_opening_tag == '') {
             $blah = preg_match('/<('.$tags_to_match.')( +|>)/i', $new_line, $matches_first, PREG_OFFSET_CAPTURE);
-            $name_of_the_first_opening_tag = $matches_first[1][0];
+	        if (isset($matches_first[1][0])) {
+		        $name_of_the_first_opening_tag = $matches_first[1][0];
+	        }
         }
        
         // Add one to the count of the tag-name for each matching opening
