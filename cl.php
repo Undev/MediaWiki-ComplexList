@@ -110,7 +110,7 @@ function efClRender( $input, $attribs ) {
             );
     */
     // . . . or just pre?
-    $array_of_tags_to_match = array('pre');
+    $array_of_tags_to_match = array('pre', 'blockquote');
     $array_of_all_tags_to_match = array_merge($array_of_tags_to_match, $wgParser->getTags());
        
     // Tried other ways (eg, unset() and
